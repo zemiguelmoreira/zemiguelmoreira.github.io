@@ -239,6 +239,25 @@
   .mods a:hover { color: var(--accent); }
   .tags { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 0; padding: 0; }
   .tags li { padding: 4px 8px; border-radius: 6px; background: var(--bg-2); color: var(--ink-2); font: 12px "JetBrains Mono", monospace; }
+  .card.spot { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 36px; align-items: center; }
+  .spot-text { display: flex; flex-direction: column; }
+  .spot-fig { margin: 0; }
+  .spot-fig svg { display: block; width: 100%; height: auto; }
+  .spot-fig figcaption { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 14px; font-size: 12px; color: var(--ink-3); }
+  .spot-fig figcaption b { font-weight: 500; color: var(--ink); }
+  .spot-fig .fit { flex-basis: 100%; color: var(--ink-2); }
+  .lg i { display: inline-block; width: 18px; margin-right: 8px; vertical-align: middle; border-top: 2px solid var(--accent); }
+  .lg .lg-ref { border-top: 2px dashed var(--warn); }
+  .lg .lg-pt { width: 8px; height: 8px; border: 0; border-radius: 50%; background: var(--hot); }
+  .bk { fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+  .bk-thick { stroke-width: 5; }
+  .bk-wheel { stroke-width: 1.4; opacity: .5; }
+  .bk-ref { opacity: .8; }
+  .bk-ref .bk { stroke: var(--warn); stroke-dasharray: 6 5; }
+  .bk-tgt .bk { stroke: var(--accent); }
+  .bk-ground { stroke: var(--line-2); stroke-width: 1; vector-effect: non-scaling-stroke; }
+  .bk-pt { fill: var(--hot); }
+  .bk-lbl { fill: var(--ink-3); font: 500 36px "JetBrains Mono", ui-monospace, monospace; }
   .more { margin: 28px 0 0; color: var(--ink-3); font-size: 15px; }
   .more a { color: var(--accent); }
 
@@ -296,6 +315,7 @@
     .about { grid-template-columns: 1fr; gap: 48px; }
     .term { position: relative; top: 0; }
     .grid { grid-template-columns: repeat(2, 1fr); }
+    .card.spot { grid-template-columns: 1fr; gap: 24px; }
     .stats { grid-template-columns: repeat(2, 1fr); }
     .act { grid-template-columns: 1fr; }
   }
@@ -393,6 +413,7 @@
           <p>I'm a <strong>software engineer working on mobility systems</strong>, helping a leading company in the sector modernize the services people rely on to get around.</p>
           <p>I learned the hands-on way. At <strong>42 School</strong> I rebuilt the classics from scratch: a Unix shell, an HTTP server, a raycasting engine. At <strong>SEA:ME</strong> I took that to cars, building Team06's autonomous model car with lane segmentation, traffic-sign detection and a Qt instrument cluster.</p>
           <p>My toolbox runs from C++, Java and Python to Linux and Red Hat, with <strong>Claude Code</strong> for AI-assisted engineering.</p>
+          <p>On the side I build <a href="https://bikefitsim.github.io/" target="_blank" rel="noopener"><strong>BikefitSim</strong></a>, an open-source app that clones your bike fit from any bike to any other.</p>
         </div>
         <ol class="journey">
           <li class="now"><span class="when mono">Now</span><h3>Software Engineer · Mobility systems</h3><p>Advancing the technical modernization of mobility services.</p></li>
@@ -429,7 +450,7 @@
       <div class="sec-head rv">
         <span class="kicker mono">03 / Projects</span>
         <h2 id="projects-h">Things I've built.</h2>
-        <p>Autonomous driving with SEA:ME, and systems built from first principles at 42 School.</p>
+        <p>An open-source bike-fit tool, autonomous driving with SEA:ME, and systems built from first principles at 42 School.</p>
       </div>
       <div class="chips rv" id="projChips" role="group" aria-label="Filter projects"></div>
       <div class="grid rv" id="projGrid"></div>
@@ -509,10 +530,12 @@
   const EMAIL = ['zmdmoreira', 'gmail.com'].join('@');
   const LINKEDIN = 'https://www.linkedin.com/in/zemiguelmoreira';
   const GITHUB = 'https://github.com/' + GH_USER;
+  const BIKEFIT = 'https://bikefitsim.github.io/';
   const ROLES = [
     'Software Engineer · Mobility Systems',
     'C++ · Java · Python',
     'Autonomous vehicles on a Jetson Nano',
+    'Building BikefitSim · open source',
     'Linux · Red Hat · Docker',
     'AI-assisted engineering with Claude Code',
     '42 School graduate · former SEA:ME intern',
@@ -537,9 +560,13 @@
     ['Claude Code', 'claude', '#D97757', 'ai'],
   ];
 
-  const CATS = { auto: 'Automotive', sys: 'Systems', web: 'Web' };
+  const CATS = { oss: 'Open source', auto: 'Automotive', sys: 'Systems', web: 'Web' };
   const SEAME = 'https://github.com/SEAME-pt/';
   const PROJECTS = [
+    { t: 'BikefitSim', org: 'Open source · MIT', cat: 'oss', spot: true, url: BIKEFIT,
+      d: 'Clone your bike fit from any bike to any other. Start from a bike that fits you, or just your measurements, add the geometry of any frame, and it works out saddle height, setback, rail position, stem and spacers so your saddle tip and hands land in exactly the same place.',
+      mods: [['Open the app', BIKEFIT], ['Source on GitHub', 'https://github.com/BikefitSim/bikefitsim.github.io']],
+      tags: ['JavaScript', 'SVG', 'Node tests', 'GitHub Actions', 'MIT'] },
     { t: 'Autonomous Vehicle', org: 'SEA:ME · Team06', cat: 'auto', feat: true, url: SEAME + 'Team06_autonomous-vehicle',
       d: 'Full self-driving stack for a Jetson Nano model car. Perception, control and display run as separate modules talking over ZeroMQ, and the CI/CD pipeline deploys to the hardware behind an 80% coverage gate.',
       mods: [['Lane detection', SEAME + 'Team06_ADS_Autonomous-Lane-Detection'], ['Object detection', SEAME + 'Team06_ADS_Object-Detection-and-Avoidance'], ['Instrument cluster', SEAME + 'Team06_DES_Instrument-Cluster']],
@@ -980,18 +1007,119 @@
   }).join('');
   filterChips($('#skillChips'), GROUPS, SKILLS, s => s[3])(k => applyFilter($$('.skill', skillList), k, 'g'));
 
+  /* ---------- BikefitSim drawing ---------- */
+  // The app's idea in miniature: the saddle tip and hands stay put while each new
+  // frame gets its own saddle height, stem and spacers. Lengths in mm, BB at (0, 0), Y up.
+  function bikeFig(fig) {
+    if (!fig) return;
+    const rad = d => d * Math.PI / 180;
+    const DROP = 70, BAR_REACH = 80, S = { x: -57, y: 700 };
+    const REF = { sta: 73.5, hta: 73, stack: 560, reach: 385, ht: 150, off: 45, cs: 410, sp: 20, L: 100, a: -6 };
+    const TARGETS = [
+      { name: 'Endurance road', sta: 73.5, hta: 72, stack: 575, reach: 368, ht: 165, off: 50, cs: 415 },
+      { name: 'Gravel', sta: 72.5, hta: 70.5, stack: 590, reach: 392, ht: 160, off: 50, cs: 430 },
+      { name: 'Aero race', sta: 74, hta: 73.5, stack: 545, reach: 395, ht: 135, off: 43, cs: 405 },
+    ];
+    const dir = f => ({ x: -Math.cos(rad(f.hta)), y: Math.sin(rad(f.hta)) });
+    const along = (p, d, k) => ({ x: p.x + k * d.x, y: p.y + k * d.y });
+    const barAt = f => {
+      const Q = along({ x: f.reach, y: f.stack }, dir(f), f.sp + 20), th = rad(90 - f.hta + f.a);
+      return { x: Q.x + f.L * Math.cos(th), y: Q.y + f.L * Math.sin(th) };
+    };
+    const B0 = barAt(REF), H = { x: B0.x + BAR_REACH, y: B0.y + 15.9 };
+    // Pick the stem, angle and spacers that put the bar back where it was (same ranking as the app, coarser steps).
+    const targets = TARGETS.map(f => {
+      let best = null;
+      for (let sp = 0; sp <= 40; sp += 5) for (let L = 70; L <= 140; L += 10) for (const a of [-17, -12, -6, 0, 6]) {
+        const B = barAt(Object.assign({}, f, { sp, L, a }));
+        const miss = Math.hypot(B.x - B0.x, B.y - B0.y) + .15 * Math.abs(a + 6);
+        if (!best || miss < best.miss) best = { sp, L, a, miss };
+      }
+      return Object.assign({}, f, best);
+    });
+
+    const pt = p => `${p.x.toFixed(1)} ${(-p.y).toFixed(1)}`;
+    const seg = (...ps) => 'M' + ps.map(pt).join('L');
+    function draw(g, f) {
+      const d = dir(f), sta = rad(f.sta), T = { x: f.reach, y: f.stack };
+      const seat = h => ({ x: -h / Math.tan(sta), y: h });
+      const Hb = along(T, d, -f.ht);
+      const A = along(Hb, d, -(Hb.y - DROP) / d.y);
+      const F = { x: A.x + f.off / Math.sin(rad(f.hta)), y: DROP };
+      const R = { x: -Math.sqrt(f.cs * f.cs - DROP * DROP), y: DROP };
+      const BB = { x: 0, y: 0 }, Ts = seat(f.stack - 45), Ss = seat(f.stack - 85), Tt = along(T, d, -18);
+      const top = along(T, d, f.sp), Q = along(T, d, f.sp + 20), B = barAt(f), hands = { x: B.x + BAR_REACH, y: B.y + 15.9 };
+      const [w1, w2, line, thick] = g.children;
+      w1.setAttribute('cx', R.x); w1.setAttribute('cy', -R.y);
+      w2.setAttribute('cx', F.x); w2.setAttribute('cy', -F.y);
+      line.setAttribute('d', seg(R, BB, Ts, Tt) + seg(BB, Hb, T) + seg(Ss, R) + seg(Hb, F) + seg(Ts, seat(S.y - 14)) + seg(top, Q, B, hands));
+      thick.setAttribute('d', seg(T, top) + seg({ x: S.x - 265, y: S.y }, S));
+    }
+
+    const svg = $('svg', fig), ref = $('[data-bike="ref"]', svg), tgt = $('[data-bike="tgt"]', svg);
+    const hp = $('[data-hands]', svg), hl = $('[data-hands-lbl]', svg);
+    hp.setAttribute('cx', H.x); hp.setAttribute('cy', -H.y);
+    hl.setAttribute('x', H.x + 30); hl.setAttribute('y', -H.y + 12);
+    const nameEl = $('[data-k="name"]', fig), fitEl = $('[data-k="fit"]', fig);
+    function caption(f) {
+      const sign = f.a > 0 ? '+' : f.a < 0 ? '−' : '';
+      nameEl.textContent = f.name;
+      fitEl.textContent = `→ saddle ${Math.round(S.y / Math.sin(rad(f.sta)))} mm · stem ${f.L} mm ${sign}${Math.abs(f.a)}° · spacers ${f.sp} mm`;
+    }
+
+    const KEYS = ['sta', 'hta', 'stack', 'reach', 'ht', 'off', 'cs', 'sp', 'L', 'a'];
+    let i = 0, cur = targets[0], timer = 0, busy = false, seen = false;
+    draw(ref, REF); draw(tgt, cur); caption(cur);
+    if (RM.matches) return;
+    function next() {
+      const from = cur, to = targets[i = (i + 1) % targets.length], t0 = performance.now();
+      busy = true;
+      caption(to);
+      (function step(now) {
+        const k = Math.min(1, (now - t0) / 1100), e = k < .5 ? 4 * k * k * k : 1 - Math.pow(2 - 2 * k, 3) / 2;
+        const f = {};
+        KEYS.forEach(n => { f[n] = from[n] + (to[n] - from[n]) * e; });
+        draw(tgt, f);
+        if (k < 1) return requestAnimationFrame(step);
+        cur = to; busy = false; schedule();
+      })(t0);
+    }
+    function schedule() { clearTimeout(timer); if (seen && !busy && !document.hidden) timer = setTimeout(next, 2800); }
+    new IntersectionObserver(([e]) => { seen = e.isIntersecting; seen ? schedule() : clearTimeout(timer); }).observe(svg);
+    document.addEventListener('visibilitychange', schedule);
+  }
+
   /* ---------- projects ---------- */
   const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>';
   const grid = $('#projGrid');
-  grid.innerHTML = PROJECTS.map((p, i) => `
-    <article class="card${p.feat ? ' feat' : ''}" data-cat="${p.cat}">
-      <div class="card-top"><span class="idx mono">${String(i + 1).padStart(2, '0')}</span><span class="cat mono">${CATS[p.cat]}</span></div>
-      <h3><a href="${p.url}" target="_blank" rel="noopener">${esc(p.t)}${arrow}</a></h3>
-      <p class="org mono">${esc(p.org)}</p>
-      <p class="desc">${esc(p.d)}</p>
-      ${p.mods ? `<div class="mods">${p.mods.map(([n, u]) => `<a href="${u}" target="_blank" rel="noopener">${esc(n)}</a>`).join('')}</div>` : ''}
-      <ul class="tags" aria-label="Technologies">${p.tags.map(x => `<li>${esc(x)}</li>`).join('')}</ul>
-    </article>`).join('');
+  const BIKE_FIG = `
+      <figure class="spot-fig">
+        <svg viewBox="-780 -780 1750 1080" role="img" aria-label="Animated drawing: new frames laid over your current bike, with the saddle tip and hands held in place while saddle height, stem and spacers change to keep them there.">
+          <line class="bk-ground" x1="-780" x2="970" y1="266" y2="266"/>
+          <g class="bk-ref" data-bike="ref"><circle class="bk bk-wheel" r="336"/><circle class="bk bk-wheel" r="336"/><path class="bk"/><path class="bk bk-thick"/></g>
+          <g class="bk-tgt" data-bike="tgt"><circle class="bk bk-wheel" r="336"/><circle class="bk bk-wheel" r="336"/><path class="bk"/><path class="bk bk-thick"/></g>
+          <circle class="bk-pt" cx="-57" cy="-700" r="16"/><text class="bk-lbl" x="-57" y="-744" text-anchor="middle">saddle tip</text>
+          <circle class="bk-pt" data-hands r="16"/><text class="bk-lbl" data-hands-lbl>hands</text>
+        </svg>
+        <figcaption class="mono">
+          <span class="lg"><i class="lg-ref"></i>your bike</span>
+          <span class="lg"><i></i><b data-k="name"></b></span>
+          <span class="lg"><i class="lg-pt"></i>saddle tip and hands stay put</span>
+          <span class="fit" data-k="fit"></span>
+        </figcaption>
+      </figure>`;
+  grid.innerHTML = PROJECTS.map((p, i) => {
+    const body = `
+        <div class="card-top"><span class="idx mono">${String(i + 1).padStart(2, '0')}</span><span class="cat mono">${CATS[p.cat]}</span></div>
+        <h3><a href="${p.url}" target="_blank" rel="noopener">${esc(p.t)}${arrow}</a></h3>
+        <p class="org mono">${esc(p.org)}</p>
+        <p class="desc">${esc(p.d)}</p>
+        ${p.mods ? `<div class="mods">${p.mods.map(([n, u]) => `<a href="${u}" target="_blank" rel="noopener">${esc(n)}</a>`).join('')}</div>` : ''}
+        <ul class="tags" aria-label="Technologies">${p.tags.map(x => `<li>${esc(x)}</li>`).join('')}</ul>`;
+    if (p.spot) return `<article class="card spot" data-cat="${p.cat}"><div class="spot-text">${body}</div>${BIKE_FIG}</article>`;
+    return `<article class="card${p.feat ? ' feat' : ''}" data-cat="${p.cat}">${body}</article>`;
+  }).join('');
+  bikeFig($('.spot-fig', grid));
   filterChips($('#projChips'), CATS, PROJECTS, p => p.cat)(k => applyFilter($$('.card', grid), k, 'cat'));
   grid.addEventListener('pointermove', e => {
     const card = e.target.closest('.card');
@@ -1032,8 +1160,9 @@
       email: ['copy my email', () => { copyEmail(); print(`<span class="t-ok">✓</span> copied <a href="mailto:${EMAIL}">${EMAIL}</a> to your clipboard`); }],
       linkedin: ['open LinkedIn', () => { print(`opening ${a(LINKEDIN, 'linkedin.com/in/zemiguelmoreira')} …`); window.open(LINKEDIN, '_blank', 'noopener'); }],
       github: ['open GitHub', () => { print(`opening ${a(GITHUB, 'github.com/' + GH_USER)} …`); window.open(GITHUB, '_blank', 'noopener'); }],
+      bikefit: ['open BikefitSim', () => { print(`opening ${a(BIKEFIT, 'bikefitsim.github.io')} …`); window.open(BIKEFIT, '_blank', 'noopener'); }],
       neofetch: ['system info', () => {
-        const car = ['       ______       ', '   ___/__|__\\___   ', '  |  _       _  |  ', "  '-(_)-----(_)-'  ", '                   ', '                   ', '                   ', '                   '];
+        const car = ['       ______       ', '   ___/__|__\\___   ', '  |  _       _  |  ', "  '-(_)-----(_)-'  ", '                   ', '                   ', '                   ', '                   ', '                   '];
         const info = [
           '<span class="t-acc">guest</span>@<span class="t-acc">jm</span>',
           '<span class="t-dim">-------------</span>',
@@ -1043,6 +1172,7 @@
           '<span class="t-acc">Stack</span>   Spring Boot, Qt, Django, PyTorch',
           '<span class="t-acc">AI</span>      Claude Code',
           '<span class="t-acc">School</span>  42 · SEA:ME',
+          '<span class="t-acc">Side</span>    BikefitSim (open source)',
         ];
         print(info.map((l, i) => `<span class="t-acc">${esc(car[i])}</span>${l}`).join('\n'));
       }],
