@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>José Miguel Moreira</title>
-<meta name="description" content="José Miguel Moreira, software engineer in mobility systems. Autonomous vehicles, C++, Java and systems programming. 42 School graduate and former SEA:ME intern.">
+<meta name="description" content="José Miguel Moreira, software engineer at A-to-Be working on mobility systems. Autonomous vehicles, C++, Java and systems programming. 42 School graduate and former SEA:ME intern.">
 <meta name="author" content="José Miguel Moreira">
 <meta property="og:type" content="website">
 <meta property="og:title" content="José Miguel Moreira · Software Engineer">
@@ -374,10 +374,10 @@
     <canvas id="road" aria-hidden="true"></canvas>
     <div class="hero-shade"></div>
     <div class="wrap hero-inner">
-      <p class="eyebrow mono">// software engineer · mobility systems</p>
+      <p class="eyebrow mono">// software engineer at a-to-be</p>
       <h1 class="glitch" data-text="José Miguel&#10;Moreira">José Miguel<br>Moreira</h1>
       <p class="typed mono" aria-hidden="true"><span class="p">&gt;</span><span id="typed"></span><span class="caret"></span></p>
-      <p class="lede">I build <strong>software that moves</strong>. Today that means modernizing mobility services. Before that, it meant teaching a model car to drive itself on a Jetson Nano.</p>
+      <p class="lede">I build <strong>software that moves</strong>. Today that means modernizing mobility services at <strong>A-to-Be</strong>. Before that, it meant teaching a model car to drive itself on a Jetson Nano.</p>
       <div class="cta">
         <a class="btn primary" data-email href="#contact">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
@@ -410,13 +410,13 @@
         <span class="kicker mono">01 / About</span>
         <h2 id="about-h">Software that <span class="accent">moves</span>.</h2>
         <div style="margin-top:26px">
-          <p>I'm a <strong>software engineer working on mobility systems</strong>, helping a leading company in the sector modernize the services people rely on to get around.</p>
+          <p>I'm a <strong>software engineer at A-to-Be</strong>, working on mobility systems and helping modernize the services people rely on to get around.</p>
           <p>I learned the hands-on way. At <strong>42 School</strong> I rebuilt the classics from scratch: a Unix shell, an HTTP server, a raycasting engine. At <strong>SEA:ME</strong> I took that to cars, building Team06's autonomous model car with lane segmentation, traffic-sign detection and a Qt instrument cluster.</p>
           <p>My toolbox runs from C++, Java and Python to Linux and Red Hat, with <strong>Claude Code</strong> for AI-assisted engineering.</p>
-          <p>On the side I build <a href="https://bikefitsim.github.io/" target="_blank" rel="noopener"><strong>BikefitSim</strong></a>, an open-source app that clones your bike fit from any bike to any other.</p>
+          <p>On the side I build other projects, like <a href="https://bikefitsim.github.io/" target="_blank" rel="noopener"><strong>BikefitSim</strong></a>, an open-source app that clones and simulates your bike fit on any other bike.</p>
         </div>
         <ol class="journey">
-          <li class="now"><span class="when mono">Now</span><h3>Software Engineer · Mobility systems</h3><p>Advancing the technical modernization of mobility services.</p></li>
+          <li class="now"><span class="when mono">Now</span><h3>Software Engineer · A-to-Be</h3><p>Mobility systems: advancing the technical modernization of mobility services.</p></li>
           <li><span class="when mono">SEA:ME</span><h3>Intern · Automotive software</h3><p>Perception, control and the in-car display for an autonomous model car on a Jetson Nano.</p></li>
           <li><span class="when mono">42 School</span><h3>Graduate · Software engineering</h3><p>Peer-to-peer, project-based training in C, C++, Unix, networking and the web.</p></li>
         </ol>
@@ -532,7 +532,8 @@
   const GITHUB = 'https://github.com/' + GH_USER;
   const BIKEFIT = 'https://bikefitsim.github.io/';
   const ROLES = [
-    'Software Engineer · Mobility Systems',
+    'Software Engineer at A-to-Be',
+    'Mobility systems',
     'C++ · Java · Python',
     'Autonomous vehicles on a Jetson Nano',
     'Building BikefitSim · open source',
@@ -568,7 +569,7 @@
   const SEAME = 'https://github.com/SEAME-pt/';
   const PROJECTS = [
     { t: 'BikefitSim', org: 'Open source · MIT', cat: 'oss', spot: true, url: BIKEFIT,
-      d: 'Clone your bike fit from any bike to any other. Start from a bike that fits you, or just your measurements, add the geometry of any frame, and it works out saddle height, setback, rail position, stem and spacers so your saddle tip and hands land in exactly the same place.',
+      d: 'Clone and simulate your bike fit on any other bike. Start from a bike that fits you, or just your measurements, add the geometry of any frame, and it works out saddle height, setback, rail position, stem and spacers so your saddle tip and hands land in exactly the same place.',
       mods: [['Open the app', BIKEFIT], ['Source on GitHub', 'https://github.com/BikefitSim/bikefitsim.github.io']],
       tags: ['JavaScript', 'SVG', 'Node tests', 'GitHub Actions', 'MIT'] },
     { t: 'Autonomous Vehicle', org: 'SEA:ME · Team06', cat: 'auto', feat: true, url: SEAME + 'Team06_autonomous-vehicle',
@@ -1152,8 +1153,8 @@
         const list = Object.entries(CMDS).filter(([, v]) => v[0]).map(([k, v]) => `  <span class="t-acc">${pad(k, 11)}</span><span class="t-dim">${v[0]}</span>`).join('\n');
         print(`Available commands:\n${list}\n<span class="t-dim">Tip: Tab completes, ↑/↓ walks history.</span>`);
       }],
-      whoami: ['who is this?', () => print('José Miguel Moreira\n<span class="t-dim">Software engineer · mobility systems · 42 School graduate · former SEA:ME intern</span>')],
-      about: ['the short version', () => print('I build software that moves. Today: modernizing mobility services.\nBefore: an autonomous model car on a Jetson Nano at SEA:ME, and\nshells, HTTP servers and raycasters from scratch at 42 School.')],
+      whoami: ['who is this?', () => print('José Miguel Moreira\n<span class="t-dim">Software engineer at A-to-Be · mobility systems · 42 School graduate · former SEA:ME intern</span>')],
+      about: ['the short version', () => print('I build software that moves. Today: modernizing mobility services at A-to-Be.\nBefore: an autonomous model car on a Jetson Nano at SEA:ME, and\nshells, HTTP servers and raycasters from scratch at 42 School.')],
       skills: ['what I work with', () => {
         const by = {};
         SKILLS.forEach(([n, , , g]) => (by[g] = by[g] || []).push(n));
@@ -1170,7 +1171,7 @@
         const info = [
           '<span class="t-acc">guest</span>@<span class="t-acc">jm</span>',
           '<span class="t-dim">-------------</span>',
-          '<span class="t-acc">Role</span>    Software Engineer, mobility',
+          '<span class="t-acc">Role</span>    Software Engineer, A-to-Be',
           '<span class="t-acc">OS</span>      Linux · Red Hat',
           '<span class="t-acc">Langs</span>   C, C++, Java, Python, JS',
           '<span class="t-acc">Stack</span>   Spring Boot, Qt, Django, PyTorch',
