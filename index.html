@@ -541,8 +541,8 @@
     '42 School graduate · former SEA:ME intern',
   ];
 
-  const GROUPS = { lang: 'Languages', fw: 'Frameworks & libs', data: 'Data', plat: 'Platforms & DevOps', tool: 'Build & tools', ai: 'AI tooling' };
-  const GROUP_TAG = { lang: 'language', fw: 'framework', data: 'data', plat: 'platform', tool: 'tool', ai: 'ai' };
+  const GROUPS = { lang: 'Languages', fw: 'Frameworks & libs', data: 'Data', plat: 'Platforms & DevOps', tool: 'Build & tools', collab: 'Collaboration', ai: 'AI tooling' };
+  const GROUP_TAG = { lang: 'language', fw: 'framework', data: 'data', plat: 'platform', tool: 'tool', collab: 'collaboration', ai: 'ai' };
   // [name, simple-icons slug or #MONOGRAM, hover color ('ink' = theme text), group]
   const SKILLS = [
     ['C', 'c', '#659AD2', 'lang'], ['C++', 'cplusplus', '#3F8FD6', 'lang'], ['Java', 'openjdk', '#ED8B00', 'lang'],
@@ -553,12 +553,16 @@
     ['GoogleTest', '#GT', '#4285F4', 'fw'], ['REST APIs', '#{}', '#0EA5E9', 'fw'],
     ['PostgreSQL', 'postgresql', '#4169E1', 'data'], ['MySQL', 'mysql', '#4479A1', 'data'], ['Redis', 'redis', '#FF4438', 'data'],
     ['Linux', 'linux', '#E5B400', 'plat'], ['Red Hat', 'redhat', '#EE0000', 'plat'], ['Docker', 'docker', '#2496ED', 'plat'],
-    ['Nginx', 'nginx', '#009639', 'plat'], ['GitHub Actions', 'githubactions', '#2088FF', 'plat'], ['NVIDIA Jetson', 'nvidia', '#76B900', 'plat'],
-    ['Git', 'git', '#F05032', 'tool'], ['GitHub', 'github', 'ink', 'tool'], ['CMake', 'cmake', '#2F80D1', 'tool'],
+    ['Nginx', 'nginx', '#009639', 'plat'], ['Ansible', 'ansible', '#EE0000', 'plat'], ['Jenkins', 'jenkins', '#D24939', 'plat'],
+    ['GitHub Actions', 'githubactions', '#2088FF', 'plat'], ['NVIDIA Jetson', 'nvidia', '#76B900', 'plat'],
+    ['Git', 'git', '#F05032', 'tool'], ['GitHub', 'github', 'ink', 'tool'], ['GitLab', 'gitlab', '#FC6D26', 'tool'], ['CMake', 'cmake', '#2F80D1', 'tool'],
     ['Make', 'gnu', '#A42E2B', 'tool'], ['Maven', 'apachemaven', '#C71A36', 'tool'], ['Postman', 'postman', '#FF6C37', 'tool'],
     ['Nmap', '#NM', '#4F7CAC', 'tool'],
+    ['Jira', 'jira', '#2684FF', 'collab'], ['Confluence', 'confluence', '#2684FF', 'collab'],
     ['Claude Code', 'claude', '#D97757', 'ai'],
   ];
+
+  const SKILL_DESC = {"C": "Systems programming: Minishell, cub3D, Philosophers", "C++": "Autonomous-vehicle stack, Qt instrument cluster, WebServ", "Java": "Backend development with Spring Boot and Maven", "Python": "PyTorch lane detection, YOLO training, Django backends", "JavaScript": "Transcendence front end and BikefitSim", "HTML": "Web front ends", "Bash": "Shell scripting and automation", "Markdown": "Documentation and READMEs", "Spring Boot": "Java REST services", "Qt": "Instrument cluster for the SEA:ME car", "QML": "Declarative UI for the instrument cluster", "Django": "Transcendence backend with REST Framework and Channels", "PyTorch": "LineNet lane-segmentation model", "OpenCV": "Computer vision on the autonomous car", "ZeroMQ": "Messaging between the car's modules", "GoogleTest": "C++ unit tests behind a CI coverage gate", "REST APIs": "Designing and consuming HTTP APIs", "PostgreSQL": "Relational database for Transcendence", "MySQL": "Relational database", "Redis": "Caching and real-time messaging for Transcendence", "Linux": "Development, servers and embedded targets", "Red Hat": "Red Hat Enterprise Linux", "Docker": "Containers for Transcendence, Inception and CI", "Nginx": "Reverse proxy and web server", "Ansible": "Configuration management and automation", "Jenkins": "CI/CD automation server", "GitHub Actions": "CI/CD: tests, coverage gates and deploys", "NVIDIA Jetson": "Edge AI board running the autonomous car", "Git": "Version control", "GitHub": "Code hosting, reviews and Pages", "GitLab": "Repositories and CI/CD", "CMake": "C++ build system", "Maven": "Java builds and dependencies", "Make": "Builds for C and C++ projects", "Postman": "API testing", "Nmap": "Network discovery and security scanning", "Jira": "Agile Scrum planning and issue tracking", "Confluence": "Team documentation", "Claude Code": "AI-assisted engineering", "Qt / QML": "Instrument cluster for the SEA:ME car"};
 
   const CATS = { oss: 'Open source', auto: 'Automotive', sys: 'Systems', web: 'Web' };
   const SEAME = 'https://github.com/SEAME-pt/';
@@ -1003,7 +1007,7 @@
     const glyph = icon[0] === '#'
       ? `<span class="mono-badge" aria-hidden="true">${esc(icon.slice(1))}</span>`
       : (iconSvg(icon) || `<span class="mono-badge" aria-hidden="true">${esc(name[0])}</span>`);
-    return `<li class="skill" data-g="${g}" style="--b:${color === 'ink' ? 'var(--ink)' : color}">${glyph}<span><span class="name">${esc(name)}</span><span class="grp">${GROUP_TAG[g]}</span></span></li>`;
+    return `<li class="skill" data-g="${g}" title="${esc(name + (SKILL_DESC[name] ? ' — ' + SKILL_DESC[name] : ''))}" style="--b:${color === 'ink' ? 'var(--ink)' : color}">${glyph}<span><span class="name">${esc(name)}</span><span class="grp">${GROUP_TAG[g]}</span></span></li>`;
   }).join('');
   filterChips($('#skillChips'), GROUPS, SKILLS, s => s[3])(k => applyFilter($$('.skill', skillList), k, 'g'));
 
