@@ -8,7 +8,7 @@
 <meta name="author" content="José Miguel Moreira">
 <meta property="og:type" content="website">
 <meta property="og:title" content="José Miguel Moreira · Software Engineer">
-<meta property="og:description" content="Software that moves: mobility systems, autonomous vehicles and systems programming.">
+<meta property="og:description" content="Software engineer at A-to-Be: mobility systems, autonomous vehicles and systems programming.">
 <meta property="og:url" content="https://zemiguelmoreira.github.io/">
 <meta name="theme-color" content="#07090e">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2307090e'/%3E%3Ctext x='16' y='20.5' font-family='monospace' font-size='12' font-weight='700' fill='%23a78bfa' text-anchor='middle'%3Ejmm%3C/text%3E%3C/svg%3E">
@@ -32,7 +32,12 @@
     --accent: #7c3aed; --on-accent: #ffffff; --glow: rgba(124, 58, 237, .14);
     --warn: #b45309; --hot: #e11d48;
     --road-line: rgba(15, 23, 42, .40); --road-grid: rgba(15, 23, 42, .07);
-    --road-fill: rgba(15, 23, 42, .035); --car: rgba(15, 23, 42, .15);
+    --road-fill: rgba(15, 23, 42, .035);
+    --car-body: #d3d9e2; --car-edge: rgba(15, 23, 42, .22); --car-glass: #7c8799; --car-tyre: #1e2533; --car-plate: #eef2f7;
+    --t-bg: #ffffff; --t-bar: #f4f6fa; --t-chips: #f8fafc; --t-ink: #334155; --t-strong: #0b1220; --t-dim: #64748b;
+    --t-border: rgba(15, 23, 42, .12); --t-line: rgba(15, 23, 42, .08); --t-scroll: #cbd5e1; --t-acc: #7c3aed;
+    --t-ok: #15803d; --t-warn: #b45309; --t-err: #dc2626; --t-focus: rgba(124, 58, 237, .5);
+    --t-chip-bg: rgba(15, 23, 42, .04); --t-chip-border: rgba(15, 23, 42, .12); --t-chip-ink: #475569;
     --shadow: 0 1px 2px rgba(15, 23, 42, .05), 0 10px 30px rgba(15, 23, 42, .07);
     color-scheme: light;
   }
@@ -44,7 +49,9 @@
       --accent: #a78bfa; --on-accent: #160b2e; --glow: rgba(167, 139, 250, .16);
       --warn: #fbbf24; --hot: #fb7185;
       --road-line: rgba(226, 232, 240, .55); --road-grid: rgba(148, 163, 184, .09);
-      --road-fill: rgba(148, 163, 184, .04); --car: rgba(148, 163, 184, .22);
+      --road-fill: rgba(148, 163, 184, .04);
+      --car-body: #1b2231; --car-edge: rgba(148, 163, 184, .30); --car-glass: #090d14; --car-tyre: #030508; --car-plate: #3a4456;
+      --t-bg: #0a0e15; --t-bar: #0f141e; --t-chips: #0c1119; --t-ink: #cfd8e3; --t-strong: #e6edf5; --t-dim: #7c8aa0; --t-border: rgba(148, 163, 184, .2); --t-line: rgba(148, 163, 184, .12); --t-scroll: #334155; --t-acc: #a78bfa; --t-ok: #4ade80; --t-warn: #fbbf24; --t-err: #f87171; --t-focus: rgba(167, 139, 250, .55); --t-chip-bg: rgba(148, 163, 184, .07); --t-chip-border: rgba(148, 163, 184, .16); --t-chip-ink: #a3b0c2;
       --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 12px 32px rgba(0, 0, 0, .35);
       color-scheme: dark;
     }
@@ -56,7 +63,9 @@
     --accent: #a78bfa; --on-accent: #160b2e; --glow: rgba(167, 139, 250, .16);
     --warn: #fbbf24; --hot: #fb7185;
     --road-line: rgba(226, 232, 240, .55); --road-grid: rgba(148, 163, 184, .09);
-    --road-fill: rgba(148, 163, 184, .04); --car: rgba(148, 163, 184, .22);
+    --road-fill: rgba(148, 163, 184, .04);
+    --car-body: #1b2231; --car-edge: rgba(148, 163, 184, .30); --car-glass: #090d14; --car-tyre: #030508; --car-plate: #3a4456;
+    --t-bg: #0a0e15; --t-bar: #0f141e; --t-chips: #0c1119; --t-ink: #cfd8e3; --t-strong: #e6edf5; --t-dim: #7c8aa0; --t-border: rgba(148, 163, 184, .2); --t-line: rgba(148, 163, 184, .12); --t-scroll: #334155; --t-acc: #a78bfa; --t-ok: #4ade80; --t-warn: #fbbf24; --t-err: #f87171; --t-focus: rgba(167, 139, 250, .55); --t-chip-bg: rgba(148, 163, 184, .07); --t-chip-border: rgba(148, 163, 184, .16); --t-chip-ink: #a3b0c2;
     --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 12px 32px rgba(0, 0, 0, .35);
     color-scheme: dark;
   }
@@ -122,12 +131,10 @@
     75% { clip-path: inset(22% 0 60% 0); transform: translate(-3px, 2px); }
     100% { clip-path: inset(40% 0 44% 0); transform: none; opacity: 0; }
   }
-  .typed { margin: 0 0 24px; min-height: 1.7em; font-size: clamp(15px, 1.8vw, 18px); color: var(--ink-2); }
+  .typed { margin: 0 0 34px; min-height: 1.7em; font-size: clamp(15px, 1.8vw, 18px); color: var(--ink-2); }
   .typed .p { color: var(--accent); margin-right: 8px; }
   .caret { display: inline-block; width: .55em; height: 1.1em; margin-left: 2px; vertical-align: -.18em; background: var(--accent); animation: blink 1s steps(1) infinite; }
   @keyframes blink { 50% { opacity: 0; } }
-  .lede { margin: 0 0 34px; max-width: 46ch; font-size: clamp(17px, 1.9vw, 20px); color: var(--ink-2); }
-  .lede strong { color: var(--ink); font-weight: 600; }
   .cta { display: flex; flex-wrap: wrap; gap: 10px; }
   .btn {
     display: inline-flex; align-items: center; gap: 10px; height: 48px; padding: 0 18px;
@@ -142,17 +149,6 @@
   .btn svg { width: 18px; height: 18px; flex: none; }
   .btn.square { width: 48px; padding: 0; justify-content: center; }
 
-  .hud { position: absolute; right: 24px; bottom: 28px; display: flex; gap: 2px; font-size: 11px; }
-  .hud > div { padding: 9px 13px; background: color-mix(in srgb, var(--surface) 70%, transparent); border: 1px solid var(--line); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
-  .hud > div:first-child { border-radius: 10px 0 0 10px; }
-  .hud > div:last-child { border-radius: 0 10px 10px 0; }
-  .hud span { display: block; color: var(--ink-3); letter-spacing: .1em; }
-  .hud b { font-size: 16px; font-weight: 500; color: var(--ink); font-variant-numeric: tabular-nums; }
-  .hud i { font-style: normal; color: var(--ink-3); margin-left: 3px; }
-  .hud .live span::before { content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 6px; border-radius: 50%; background: var(--accent); vertical-align: 1px; animation: blink 1.6s steps(1) infinite; }
-  .hint { position: absolute; right: 26px; bottom: 96px; margin: 0; font-size: 12px; color: var(--ink-3); }
-  .hint .touch { display: none; }
-  @media (pointer: coarse) { .hint .mouse { display: none; } .hint .touch { display: inline; } }
   .scroll-cue { position: absolute; left: 24px; bottom: 30px; display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--ink-3); text-decoration: none; letter-spacing: .1em; text-transform: uppercase; }
   .scroll-cue i { position: relative; display: block; width: 1px; height: 36px; background: var(--line-2); overflow: hidden; }
   .scroll-cue i::after { content: ""; position: absolute; left: 0; top: -40%; width: 1px; height: 40%; background: var(--accent); animation: drop 1.8s ease-in-out infinite; }
@@ -179,23 +175,23 @@
   .journey h3 { margin: 2px 0 4px; font-size: 19px; letter-spacing: -.01em; }
   .journey p { margin: 0; font-size: 15.5px; }
 
-  /* terminal (always dark) */
-  .term { position: sticky; top: 88px; display: flex; flex-direction: column; height: 500px; border-radius: 16px; overflow: hidden; background: #0a0e15; color: #cfd8e3; border: 1px solid rgba(148, 163, 184, .2); box-shadow: var(--shadow); }
-  .term:focus-within { border-color: rgba(167, 139, 250, .55); }
-  .term-bar { display: flex; align-items: center; gap: 7px; padding: 12px 14px; background: #0f141e; border-bottom: 1px solid rgba(148, 163, 184, .12); }
+  /* terminal: white in light mode, dark in dark mode */
+  .term { position: sticky; top: 88px; display: flex; flex-direction: column; height: 500px; border-radius: 16px; overflow: hidden; background: var(--t-bg); color: var(--t-ink); border: 1px solid var(--t-border); box-shadow: var(--shadow); }
+  .term:focus-within { border-color: var(--t-focus); }
+  .term-bar { display: flex; align-items: center; gap: 7px; padding: 12px 14px; background: var(--t-bar); border-bottom: 1px solid var(--t-line); }
   .term-bar i { width: 11px; height: 11px; border-radius: 50%; }
   .term-bar i:nth-child(1) { background: #f87171; } .term-bar i:nth-child(2) { background: #fbbf24; } .term-bar i:nth-child(3) { background: #4ade80; }
-  .term-bar span { flex: 1; text-align: center; margin-right: 40px; font-size: 12px; color: #7c8aa0; }
-  .term-out { flex: 1; overflow-y: auto; padding: 14px 16px 4px; font-size: 13.5px; line-height: 1.65; white-space: pre-wrap; overflow-wrap: anywhere; scrollbar-width: thin; scrollbar-color: #334155 transparent; }
-  .term-out a { color: #a78bfa; }
-  .t-cmd { color: #e6edf5; } .t-cmd b { color: #4ade80; font-weight: 500; }
-  .t-acc { color: #a78bfa; } .t-dim { color: #7c8aa0; } .t-ok { color: #4ade80; } .t-warn { color: #fbbf24; } .t-err { color: #f87171; }
+  .term-bar span { flex: 1; text-align: center; margin-right: 40px; font-size: 12px; color: var(--t-dim); }
+  .term-out { flex: 1; overflow-y: auto; padding: 14px 16px 4px; font-size: 13.5px; line-height: 1.65; white-space: pre-wrap; overflow-wrap: anywhere; scrollbar-width: thin; scrollbar-color: var(--t-scroll) transparent; }
+  .term-out a { color: var(--t-acc); }
+  .t-cmd { color: var(--t-strong); } .t-cmd b { color: var(--t-ok); font-weight: 500; }
+  .t-acc { color: var(--t-acc); } .t-dim { color: var(--t-dim); } .t-ok { color: var(--t-ok); } .t-warn { color: var(--t-warn); } .t-err { color: var(--t-err); }
   .term-in { display: flex; gap: 8px; align-items: center; padding: 6px 16px 14px; font-size: 13.5px; }
-  .term-in label { color: #4ade80; white-space: nowrap; }
-  .term-in input { flex: 1; min-width: 0; padding: 0; border: 0; outline: 0; background: transparent; color: #e6edf5; font: inherit; caret-color: #a78bfa; }
-  .term-chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 12px; border-top: 1px solid rgba(148, 163, 184, .12); background: #0c1119; }
-  .term-chips button { padding: 5px 10px; border-radius: 999px; border: 1px solid rgba(148, 163, 184, .16); background: rgba(148, 163, 184, .07); color: #a3b0c2; font: 12px "JetBrains Mono", monospace; cursor: pointer; transition: color .2s, border-color .2s; }
-  .term-chips button:hover { color: #a78bfa; border-color: rgba(167, 139, 250, .5); }
+  .term-in label { color: var(--t-ok); white-space: nowrap; }
+  .term-in input { flex: 1; min-width: 0; padding: 0; border: 0; outline: 0; background: transparent; color: var(--t-strong); font: inherit; caret-color: var(--t-acc); }
+  .term-chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 12px; border-top: 1px solid var(--t-line); background: var(--t-chips); }
+  .term-chips button { padding: 5px 10px; border-radius: 999px; border: 1px solid var(--t-chip-border); background: var(--t-chip-bg); color: var(--t-chip-ink); font: 12px "JetBrains Mono", monospace; cursor: pointer; transition: color .2s, border-color .2s; }
+  .term-chips button:hover { color: var(--t-acc); border-color: var(--t-focus); }
 
   /* chips */
   .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 26px; }
@@ -218,12 +214,11 @@
   .mono-badge { display: grid; place-items: center; width: 24px; height: 24px; flex: none; border: 1.5px solid currentColor; border-radius: 6px; color: var(--ink-2); font: 700 9px "JetBrains Mono", monospace; letter-spacing: -.02em; transition: color .25s; }
 
   /* projects */
-  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 1fr; gap: 16px; }
   .card { position: relative; display: flex; flex-direction: column; padding: 24px; border-radius: 18px; border: 1px solid var(--line); background: var(--surface); overflow: hidden; transition: transform .25s, border-color .25s, box-shadow .25s; }
   .card::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .3s; background: radial-gradient(440px circle at var(--mx, 50%) var(--my, 0%), var(--glow), transparent 45%); }
   .card:hover { transform: translateY(-3px); border-color: var(--line-2); box-shadow: var(--shadow); }
   .card:hover::before { opacity: 1; }
-  .card.feat { grid-column: span 2; }
   .card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
   .idx { font-size: 13px; color: var(--ink-3); }
   .cats { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 16px; }
@@ -240,12 +235,6 @@
   .mods a:hover { color: var(--accent); }
   .tags { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 0; padding: 0; }
   .tags li { padding: 4px 8px; border-radius: 6px; background: var(--bg-2); color: var(--ink-2); font: 12px "JetBrains Mono", monospace; }
-  .card.spot { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 36px; align-items: center; }
-  .spot-text { display: flex; flex-direction: column; }
-  .spot-fig { margin: 0; }
-  .spot-fig a { display: block; border-radius: 12px; overflow: hidden; border: 1px solid var(--line-2); box-shadow: var(--shadow); }
-  .spot-fig img { display: block; width: 100%; height: auto; transition: transform .4s; }
-  .spot-fig a:hover img { transform: scale(1.02); }
   .more { margin: 28px 0 0; color: var(--ink-3); font-size: 15px; }
   .more a { color: var(--accent); }
 
@@ -303,16 +292,13 @@
     .about { grid-template-columns: 1fr; gap: 48px; }
     .term { position: relative; top: 0; }
     .grid { grid-template-columns: repeat(2, 1fr); }
-    .card.spot { grid-template-columns: 1fr; gap: 24px; }
     .stats { grid-template-columns: repeat(2, 1fr); }
     .act { grid-template-columns: 1fr; }
   }
   @media (max-width: 760px) {
     .nav ul li:not(.keep) { display: none; }
     .hero-shade { background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 70%, transparent) 0%, color-mix(in srgb, var(--bg) 84%, transparent) 58%, color-mix(in srgb, var(--bg) 45%, transparent) 80%, var(--bg) 100%); }
-    .hud { left: 16px; right: 16px; bottom: 16px; }
-    .hud > div { flex: 1; padding: 8px 10px; }
-    .hud .opt, .hint, .scroll-cue { display: none; }
+    .scroll-cue { display: none; }
     .typed { min-height: 3.4em; }
     .hero-inner { padding-bottom: 110px; }
   }
@@ -320,7 +306,6 @@
     .wrap { padding: 0 16px; }
     .sec { padding: 84px 0; }
     .grid { grid-template-columns: 1fr; }
-    .card.feat { grid-column: auto; }
     .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
     .skill { padding: 12px; gap: 10px; }
     .term { height: 460px; }
@@ -365,7 +350,6 @@
       <p class="eyebrow mono">// software engineer at a-to-be</p>
       <h1 class="glitch" data-text="José Miguel&#10;Moreira">José Miguel<br>Moreira</h1>
       <p class="typed mono" aria-hidden="true"><span class="p">&gt;</span><span id="typed"></span><span class="caret"></span></p>
-      <p class="lede">I build <strong>software that moves</strong>. Today that means modernizing mobility services at <strong>A-to-Be</strong>. Before that, it meant teaching a model car to drive itself on a Jetson Nano.</p>
       <div class="cta">
         <a class="btn primary" data-email href="#contact">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
@@ -381,14 +365,6 @@
         </a>
       </div>
     </div>
-    <p class="hint mono" aria-hidden="true"><span class="mouse">↔ move your cursor to steer</span><span class="touch">↔ drag sideways to steer</span></p>
-    <div class="hud mono" aria-hidden="true">
-      <div class="live"><span>SPD</span><b id="hudSpd">47</b><i>km/h</i></div>
-      <div><span>LANE Δ</span><b id="hudLane">+0.00</b><i>m</i></div>
-      <div><span>OBJ</span><b id="hudObj">0</b></div>
-      <div class="opt"><span>FPS</span><b id="hudFps">--</b></div>
-      <div class="opt"><span>LAST PUSH</span><b id="hudPush">--</b></div>
-    </div>
     <a class="scroll-cue mono" href="#about"><i></i>Scroll</a>
   </section>
 
@@ -396,11 +372,11 @@
     <div class="wrap about">
       <div class="rv">
         <span class="kicker mono">01 / About</span>
-        <h2 id="about-h">Software that <span class="accent">moves</span>.</h2>
+        <h2 id="about-h">A bit about me.</h2>
         <div style="margin-top:26px">
           <p>I'm a <strong>software engineer at A-to-Be</strong>, working on mobility systems and helping modernize the services people rely on to get around.</p>
           <p>I learned the hands-on way. At <strong>42 School</strong> I rebuilt the classics from scratch: a Unix shell, an HTTP server, a raycasting engine. At <strong>SEA:ME</strong> I took that to mobility and automotive systems, building a Jetson Nano powered autonomous model car with lane segmentation, traffic-sign detection and a Qt instrument cluster.</p>
-          <p>On the side I build other projects, like <a href="https://bikefitsim.github.io/" target="_blank" rel="noopener"><strong>BikefitSim</strong></a>, an open-source app that clones your bike fit and simulates iton any other frame.</p>
+          <p>On the side I build other projects, like <a href="https://bikefitsim.github.io/" target="_blank" rel="noopener"><strong>BikefitSim</strong></a>, an open-source app that clones your bike fit and simulates it on any other frame.</p>
         </div>
         <ol class="journey">
           <li class="now"><span class="when mono">Now</span><h3>Software Engineer · A-to-Be</h3><p>Mobility systems: advancing the technical modernization of mobility services.</p></li>
@@ -475,7 +451,7 @@
   <section class="contact" id="contact" aria-labelledby="contact-h">
     <div class="wrap rv">
       <span class="kicker mono">05 / Contact</span>
-      <h2 id="contact-h">Let's build something that <span class="accent">moves</span>.</h2>
+      <h2 id="contact-h">Let's <span class="accent">talk</span>.</h2>
       <p>Mobility, automotive software, systems engineering, or a good conversation about bikes and code. My inbox is open.</p>
       <div class="mail-row">
         <a class="mail-big" data-email="text" href="#contact">zmdmoreira [at] gmail.com</a>
@@ -558,10 +534,10 @@
   };
   const SEAME = 'https://github.com/SEAME-pt/';
   const PROJECTS = [
-    { t: 'BikefitSim', org: 'Open source · MIT', cat: ['oss', 'web', 'cycling', 'sim'], spot: true, url: BIKEFIT,
+    { t: 'BikefitSim', org: 'Open source · MIT', cat: ['oss', 'web', 'cycling', 'sim'], url: BIKEFIT,
       d: 'Clone and simulate your bike fit on any other bike. Start from a bike that fits you, or just your measurements, add the geometry of any frame, and it works out saddle height, setback, rail position, stem and spacers so your saddle tip and hands land in exactly the same place.',
       tags: ['JavaScript', 'SVG', 'Node tests', 'GitHub Actions', 'MIT'] },
-    { t: 'Autonomous Vehicle', org: 'SEA:ME · Team06', cat: ['auto', 'embedded', 'cv', 'cicd'], feat: true, url: SEAME + 'Team06_autonomous-vehicle',
+    { t: 'Autonomous Vehicle', org: 'SEA:ME · Team06', cat: ['auto', 'embedded', 'cv', 'cicd'], url: SEAME + 'Team06_autonomous-vehicle',
       d: 'Full self-driving stack for a Jetson Nano model car. Perception, control and display run as separate modules talking over ZeroMQ, and the CI/CD pipeline deploys to the hardware behind an 80% coverage gate.',
       mods: [['Lane detection', SEAME + 'Team06_ADS_Autonomous-Lane-Detection'], ['Object detection', SEAME + 'Team06_ADS_Object-Detection-and-Avoidance'], ['Instrument cluster', SEAME + 'Team06_DES_Instrument-Cluster']],
       tags: ['C++', 'ZeroMQ', 'OpenCV', 'Jetson Nano', 'GitHub Actions', 'Docker'] },
@@ -689,13 +665,12 @@
   /* ---------- hero: lane-detection canvas ---------- */
   const road = (() => {
     const hero = $('.hero'), cvs = $('#road'), ctx = cvs.getContext('2d');
-    const hud = { spd: $('#hudSpd'), lane: $('#hudLane'), obj: $('#hudObj'), fps: $('#hudFps') };
     const LANE = 3.5, EDGE = LANE * 1.5, CAM_H = 1.35, FAR = 150;
     let NEAR = 2.4;
     let W = 0, H = 0, hz = 0, f = 1, vpx = 0, col = {};
     let t = 0, scroll = 0, speed = 13, camX = 0, camT = 0, curve = 0, objCount = 0;
     let pointerAt = -1e9, running = false, visible = true, raf = 0, last = 0;
-    let fpsAcc = 0, fpsN = 0, hudT = 0, nextSign = 1.5;
+    let nextSign = 1.5;
     const cars = [], signs = [];
     const rnd = (a, b) => a + Math.random() * (b - a);
     const pick = a => a[Math.floor(Math.random() * a.length)];
@@ -705,15 +680,15 @@
     function readColors() {
       const cs = getComputedStyle(document.documentElement);
       const g = n => cs.getPropertyValue(n).trim();
-      col = { line: g('--road-line'), grid: g('--road-grid'), fill: g('--road-fill'), car: g('--car'), acc: g('--accent'), warn: g('--warn'), hot: g('--hot'), bg: g('--bg') };
+      col = { line: g('--road-line'), grid: g('--road-grid'), fill: g('--road-fill'), body: g('--car-body'), edge: g('--car-edge'), glass: g('--car-glass'), tyre: g('--car-tyre'), plate: g('--car-plate'), acc: g('--accent'), warn: g('--warn'), hot: g('--hot'), bg: g('--bg') };
     }
     function spawnCar(initial) {
       for (let k = 0; k < 6; k++) {
-        const c = { lane: pick([-1, 0, 1, -1, 1]), z: initial ? rnd(16, 120) : rnd(115, 145), v: rnd(10, 16), conf: rnd(.86, .98) };
+        const c = { lane: pick([-1, 0, 1, -1, 1]), z: initial ? rnd(16, 120) : rnd(115, 145), v: rnd(10, 16), conf: rnd(.86, .98), ht: rnd(1.42, 1.7) };
         c.vt = c.v;
         if (!cars.some(o => o !== c && o.lane === c.lane && Math.abs(o.z - c.z) < 14)) return c;
       }
-      return { lane: pick([-1, 1]), z: rnd(130, 145), v: rnd(10, 14), vt: 12, conf: .9 };
+      return { lane: pick([-1, 1]), z: rnd(130, 145), v: rnd(10, 14), vt: 12, conf: .9, ht: 1.5 };
     }
     for (let i = 0; i < 4; i++) cars.push(spawnCar(true));
 
@@ -772,17 +747,47 @@
     function drawCar(c, ego) {
       if (c.z < NEAR + .3 || c.z > FAR) return;
       const [x, y, s] = P(c.lane * LANE, c.z);
-      const w = 1.8 * s, h = 1.45 * s;
+      const w = 1.86 * s, h = (c.ht || 1.5) * s;
       if (x + w < 0 || x - w > W || y - h > H) return;
-      ctx.fillStyle = col.car;
-      rrect(x - w * .36, y - h, w * .72, h * .42, Math.min(10, w * .08));
-      rrect(x - w / 2, y - h * .62, w, h * .5, Math.min(8, w * .07));
-      rrect(x - w * .44, y - h * .14, w * .16, h * .14, 2);
-      rrect(x + w * .28, y - h * .14, w * .16, h * .14, 2);
+      // Rear view of a modern car; u runs across the width (-.5..5), v up the height (0..1).
+      const X = u => x + u * w, Y = v => y - v * h, r = Math.min(4, w * .03);
+      ctx.fillStyle = col.tyre;
+      rrect(X(-.47), Y(.2), w * .17, h * .2, r);
+      rrect(X(.30), Y(.2), w * .17, h * .2, r);
+      // body: bumper, shoulders and sloped roof as one outline
+      ctx.beginPath();
+      ctx.moveTo(X(-.5), Y(.2));
+      ctx.lineTo(X(-.5), Y(.5));
+      ctx.quadraticCurveTo(X(-.5), Y(.6), X(-.45), Y(.62));
+      ctx.lineTo(X(-.33), Y(.94));
+      ctx.quadraticCurveTo(X(-.3), Y(1), X(-.24), Y(1));
+      ctx.lineTo(X(.24), Y(1));
+      ctx.quadraticCurveTo(X(.3), Y(1), X(.33), Y(.94));
+      ctx.lineTo(X(.45), Y(.62));
+      ctx.quadraticCurveTo(X(.5), Y(.6), X(.5), Y(.5));
+      ctx.lineTo(X(.5), Y(.2));
+      ctx.quadraticCurveTo(X(.5), Y(.12), X(.44), Y(.12));
+      ctx.lineTo(X(-.44), Y(.12));
+      ctx.quadraticCurveTo(X(-.5), Y(.12), X(-.5), Y(.2));
+      ctx.closePath();
+      ctx.fillStyle = col.body; ctx.fill();
+      ctx.strokeStyle = col.edge; ctx.lineWidth = 1; ctx.stroke();
+      // rear glass, mirrors, plate
+      ctx.beginPath();
+      ctx.moveTo(X(-.38), Y(.66)); ctx.lineTo(X(.38), Y(.66)); ctx.lineTo(X(.28), Y(.92)); ctx.lineTo(X(-.28), Y(.92));
+      ctx.closePath();
+      ctx.fillStyle = col.glass; ctx.fill();
+      ctx.fillStyle = col.body;
+      rrect(X(-.56), Y(.68), w * .07, h * .06, r);
+      rrect(X(.49), Y(.68), w * .07, h * .06, r);
+      ctx.fillStyle = col.plate;
+      rrect(X(-.11), Y(.4), w * .22, h * .09, Math.min(2, r));
+      // full-width LED light bar between slim taillights
       ctx.save();
-      ctx.fillStyle = col.hot; ctx.shadowColor = col.hot; ctx.shadowBlur = Math.min(14, s * .25);
-      rrect(x - w * .46, y - h * .5, w * .2, h * .1, 2);
-      rrect(x + w * .26, y - h * .5, w * .2, h * .1, 2);
+      ctx.fillStyle = col.hot; ctx.shadowColor = col.hot; ctx.shadowBlur = Math.min(14, s * .3);
+      ctx.fillRect(X(-.42), Y(.56), w * .84, Math.max(1, h * .025));
+      rrect(X(-.48), Y(.585), w * .14, h * .07, Math.min(2, r));
+      rrect(X(.34), Y(.585), w * .14, h * .07, Math.min(2, r));
       ctx.restore();
       const close = c.lane === ego && c.z < 24;
       const color = close ? col.warn : col.acc;
@@ -911,21 +916,11 @@
       }
     }
 
-    function updateHud(fps) {
-      hud.spd.textContent = Math.round(speed * 3.6);
-      const o = camX - egoLane() * LANE;
-      hud.lane.textContent = (o >= 0 ? '+' : '') + o.toFixed(2);
-      hud.obj.textContent = objCount;
-      if (fps) hud.fps.textContent = Math.round(fps);
-    }
-
     function frame(now) {
       raf = requestAnimationFrame(frame);
       const dt = Math.min(.05, Math.max(0, (now - last) / 1000));
       last = now;
       update(dt); draw();
-      fpsAcc += dt; fpsN++;
-      if ((hudT -= dt) <= 0) { hudT = .25; updateHud(fpsAcc ? fpsN / fpsAcc : 0); fpsAcc = 0; fpsN = 0; }
     }
     function start() { if (running || RM.matches || !visible || document.hidden) return; running = true; last = performance.now(); raf = requestAnimationFrame(frame); }
     function stop() { running = false; cancelAnimationFrame(raf); }
@@ -944,7 +939,7 @@
     resize();
     // Advance a little so the first (and, with reduced motion, only) frame has signs and motion in it.
     for (let i = 0; i < 90; i++) update(1 / 30);
-    draw(); updateHud();
+    draw();
     start();
     return { refresh() { readColors(); if (!running) draw(); } };
   })();
@@ -1004,10 +999,6 @@
   /* ---------- projects ---------- */
   const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>';
   const grid = $('#projGrid');
-  const BIKE_FIG = `
-      <figure class="spot-fig">
-        <a href="${BIKEFIT}" target="_blank" rel="noopener"><img src="bikefitsim-preview.webp" width="2000" height="1053" loading="lazy" alt="BikefitSim side view: a new frame drawn over the reference bike on the BB grid, with saddle height, setback, personal reach and hand position dimensioned, plus close-ups of the front end and saddle."></a>
-      </figure>`;
   grid.innerHTML = PROJECTS.map((p, i) => {
     const body = `
         <div class="card-top"><span class="idx mono">${String(i + 1).padStart(2, '0')}</span></div>
@@ -1017,8 +1008,7 @@
         <p class="desc">${esc(p.d)}</p>
         ${p.mods ? `<div class="mods">${p.mods.map(([n, u]) => `<a href="${u}" target="_blank" rel="noopener">${esc(n)}</a>`).join('')}</div>` : ''}
         <ul class="tags" aria-label="Technologies">${p.tags.map(x => `<li>${esc(x)}</li>`).join('')}</ul>`;
-    if (p.spot) return `<article class="card spot"><div class="spot-text">${body}</div>${BIKE_FIG}</article>`;
-    return `<article class="card${p.feat ? ' feat' : ''}">${body}</article>`;
+    return `<article class="card">${body}</article>`;
   }).join('');
   grid.addEventListener('pointermove', e => {
     const card = e.target.closest('.card');
@@ -1048,7 +1038,7 @@
         print(`Available commands:\n${list}\n<span class="t-dim">Tip: Tab completes, ↑/↓ walks history.</span>`);
       }],
       whoami: ['who is this?', () => print('José Miguel Moreira\n<span class="t-dim">Software engineer at A-to-Be · mobility systems · 42 School graduate · former SEA:ME intern</span>')],
-      about: ['the short version', () => print('I build software that moves. Today: modernizing mobility services at A-to-Be.\nBefore: an autonomous model car on a Jetson Nano at SEA:ME, and\nshells, HTTP servers and raycasters from scratch at 42 School.')],
+      about: ['the short version', () => print('Software engineer at A-to-Be, working on mobility services.\nBefore: an autonomous model car on a Jetson Nano at SEA:ME, and\nshells, HTTP servers and raycasters from scratch at 42 School.')],
       skills: ['what I work with', () => {
         const by = {};
         SKILLS.forEach(([n, , , g]) => (by[g] = by[g] || []).push(n));
@@ -1200,7 +1190,6 @@
     const pushText = lastPush ? ago(lastPush) : '--';
     $('#stPush').textContent = pushText.replace(' ago', '');
     $('#stPush').title = lastPush ? new Date(lastPush).toLocaleString() : '';
-    $('#hudPush').textContent = pushText.replace(' ago', '');
 
     // activity: merge consecutive pushes to the same repo
     const items = [];
