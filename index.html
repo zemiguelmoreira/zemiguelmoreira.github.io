@@ -149,7 +149,7 @@
   .btn svg { width: 18px; height: 18px; flex: none; }
   .btn.square { width: 48px; padding: 0; justify-content: center; }
 
-  .scroll-cue { position: absolute; left: 24px; bottom: 30px; display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--ink-3); text-decoration: none; letter-spacing: .1em; text-transform: uppercase; }
+  .scroll-cue { position: absolute; left: 24px; bottom: 62px; display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--ink-3); text-decoration: none; letter-spacing: .1em; text-transform: uppercase; }
   .scroll-cue i { position: relative; display: block; width: 1px; height: 36px; background: var(--line-2); overflow: hidden; }
   .scroll-cue i::after { content: ""; position: absolute; left: 0; top: -40%; width: 1px; height: 40%; background: var(--accent); animation: drop 1.8s ease-in-out infinite; }
   @keyframes drop { to { top: 100%; } }
@@ -246,11 +246,14 @@
   .mail-big { font-size: clamp(20px, 3.6vw, 36px); font-weight: 600; letter-spacing: -.02em; text-decoration: none; overflow-wrap: anywhere; background-image: linear-gradient(var(--accent), var(--accent)); background-size: 0 2px; background-position: 0 100%; background-repeat: no-repeat; transition: background-size .35s; }
   .mail-big:hover { background-size: 100% 2px; }
   .contact .cta { justify-content: center; }
-  footer { padding: 28px 0 40px; border-top: 1px solid var(--line); color: var(--ink-3); font-size: 13px; }
-  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; }
+  footer { position: fixed; inset: auto 0 0 0; z-index: 50; padding: 10px 0; border-top: 1px solid var(--line); color: var(--ink-3); font-size: 13px;
+           background: color-mix(in srgb, var(--bg) 82%, transparent); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; }
+  body { padding-bottom: 44px; }
+  @media (pointer: coarse) { .kbd-hint { display: none; } }
   kbd { padding: 1px 6px; border-radius: 5px; border: 1px solid var(--line-2); font: 12px "JetBrains Mono", monospace; }
 
-  .toast { position: fixed; left: 50%; bottom: 24px; z-index: 80; padding: 11px 16px; border-radius: 12px; background: var(--ink); color: var(--bg); font: 500 14px "Space Grotesk", sans-serif; box-shadow: var(--shadow); opacity: 0; transform: translate(-50%, 12px); pointer-events: none; transition: opacity .25s, transform .25s; }
+  .toast { position: fixed; left: 50%; bottom: 64px; z-index: 80; padding: 11px 16px; border-radius: 12px; background: var(--ink); color: var(--bg); font: 500 14px "Space Grotesk", sans-serif; box-shadow: var(--shadow); opacity: 0; transform: translate(-50%, 12px); pointer-events: none; transition: opacity .25s, transform .25s; }
   .toast.show { opacity: 1; transform: translate(-50%, 0); }
 
   .js .rv { opacity: 0; transform: translateY(18px); transition: opacity .8s cubic-bezier(.2, .8, .2, 1), transform .8s cubic-bezier(.2, .8, .2, 1); }
@@ -412,7 +415,7 @@
 <footer>
   <div class="wrap">
     <span>© <span id="year">2026</span> José Miguel Moreira</span>
-    <span>Hand-built with HTML, CSS and a little canvas · press <kbd>/</kbd> for the terminal</span>
+    <span class="kbd-hint">Press <kbd>/</kbd> for the terminal</span>
   </div>
 </footer>
 
@@ -436,7 +439,6 @@
     'Autonomous vehicles on a Jetson Nano',
     'Building BikefitSim · open source',
     'Linux · Red Hat · Docker',
-    'AI-assisted engineering with Claude Code',
     '42 School graduate · former SEA:ME intern',
   ];
 
