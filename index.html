@@ -212,7 +212,7 @@
   .skill:hover svg, .skill:hover .mono-badge { color: var(--b); }
   .skill .name { display: block; font-weight: 500; font-size: 15px; line-height: 1.3; }
   .skill .grp { display: block; font: 11px "JetBrains Mono", monospace; color: var(--ink-3); }
-  .skill.hide, .card.hide { display: none; }
+  .skill.hide { display: none; }
   .pop { animation: pop .4s cubic-bezier(.2, .8, .2, 1) both; }
   @keyframes pop { from { opacity: 0; transform: translateY(8px) scale(.98); } }
   .mono-badge { display: grid; place-items: center; width: 24px; height: 24px; flex: none; border: 1.5px solid currentColor; border-radius: 6px; color: var(--ink-2); font: 700 9px "JetBrains Mono", monospace; letter-spacing: -.02em; transition: color .25s; }
@@ -224,10 +224,10 @@
   .card:hover { transform: translateY(-3px); border-color: var(--line-2); box-shadow: var(--shadow); }
   .card:hover::before { opacity: 1; }
   .card.feat { grid-column: span 2; }
-  .card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 30px; }
+  .card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
   .idx { font-size: 13px; color: var(--ink-3); }
-  .cats { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
-  .cat { padding: 4px 9px; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); color: var(--accent); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+  .cats { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 16px; }
+  .cat { padding: 3px 8px; white-space: nowrap; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); color: var(--accent); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; }
   .card h3 { margin: 0 0 4px; font-size: 22px; letter-spacing: -.015em; line-height: 1.2; }
   .card h3 a { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; }
   .card h3 a::after { content: ""; position: absolute; inset: 0; z-index: 1; border-radius: 18px; }
@@ -439,7 +439,6 @@
         <h2 id="projects-h">Things I've built.</h2>
         <p>An open-source bike-fit tool, autonomous driving with SEA:ME, and systems built from first principles at 42 School.</p>
       </div>
-      <div class="chips rv" id="projChips" role="group" aria-label="Filter projects"></div>
       <div class="grid rv" id="projGrid"></div>
       <p class="more rv">More on <a href="https://github.com/zemiguelmoreira?tab=repositories" target="_blank" rel="noopener">github.com/zemiguelmoreira</a>.</p>
     </div>
@@ -552,35 +551,39 @@
 
   const SKILL_DESC = {"C": "Systems programming: Minishell, cub3D, Philosophers", "C++": "Autonomous-vehicle stack, Qt instrument cluster, WebServ", "Java": "Backend development with Spring Boot and Maven", "Python": "PyTorch lane detection, YOLO training, Django backends", "JavaScript": "Transcendence front end and BikefitSim", "HTML": "Web front ends", "Bash": "Shell scripting and automation", "Markdown": "Documentation and READMEs", "Spring Boot": "Java REST services", "Qt": "Instrument cluster for the SEA:ME car", "QML": "Declarative UI for the instrument cluster", "Django": "Transcendence backend with REST Framework and Channels", "PyTorch": "Lane-segmentation model for the lane detection project", "OpenCV": "Computer vision on the autonomous car", "ZeroMQ": "Messaging between the car's modules", "GoogleTest": "C++ unit tests behind a CI coverage gate", "REST APIs": "Designing and consuming HTTP APIs", "PostgreSQL": "Relational database for Transcendence", "MySQL": "Relational database", "Redis": "Caching and real-time messaging for Transcendence", "Linux": "Development, servers and embedded targets", "Red Hat": "Red Hat Enterprise Linux", "Docker": "Containers for Transcendence, Inception and CI", "Nginx": "Reverse proxy and web server", "Ansible": "Configuration management and automation", "Jenkins": "CI/CD automation server", "GitHub Actions": "CI/CD: tests, coverage gates and deploys", "NVIDIA Jetson": "Edge AI board running the autonomous car", "Git": "Version control", "GitHub": "Code hosting, reviews and Pages", "GitLab": "Repositories and CI/CD", "CMake": "C++ build system", "Maven": "Java builds and dependencies", "Make": "Builds for C and C++ projects", "Postman": "API testing", "Nmap": "Network discovery and security scanning", "Jira": "Agile Scrum planning and issue tracking", "Confluence": "Team documentation", "Claude Code": "AI-assisted engineering", "Qt / QML": "Instrument cluster for the SEA:ME car"};
 
-  const CATS = { oss: 'Open source', auto: 'Automotive', sys: 'Systems', gfx: 'Graphics', web: 'Web', micro: 'Microservices' };
+  const CATS = {
+    oss: 'Open source', auto: 'Automotive', sys: 'Systems', gfx: 'Graphics', web: 'Web', micro: 'Microservices',
+    embedded: 'Embedded', cv: 'Computer vision', ml: 'Machine learning', cicd: 'CI/CD', ui: 'UI', net: 'Networking',
+    unix: 'Unix', realtime: 'Real-time', games: 'Games', cycling: 'Cycling', sim: 'Simulation',
+  };
   const SEAME = 'https://github.com/SEAME-pt/';
   const PROJECTS = [
-    { t: 'BikefitSim', org: 'Open source · MIT', cat: 'oss', spot: true, url: BIKEFIT,
+    { t: 'BikefitSim', org: 'Open source · MIT', cat: ['oss', 'web', 'cycling', 'sim'], spot: true, url: BIKEFIT,
       d: 'Clone and simulate your bike fit on any other bike. Start from a bike that fits you, or just your measurements, add the geometry of any frame, and it works out saddle height, setback, rail position, stem and spacers so your saddle tip and hands land in exactly the same place.',
       tags: ['JavaScript', 'SVG', 'Node tests', 'GitHub Actions', 'MIT'] },
-    { t: 'Autonomous Vehicle', org: 'SEA:ME · Team06', cat: 'auto', feat: true, url: SEAME + 'Team06_autonomous-vehicle',
+    { t: 'Autonomous Vehicle', org: 'SEA:ME · Team06', cat: ['auto', 'embedded', 'cv', 'cicd'], feat: true, url: SEAME + 'Team06_autonomous-vehicle',
       d: 'Full self-driving stack for a Jetson Nano model car. Perception, control and display run as separate modules talking over ZeroMQ, and the CI/CD pipeline deploys to the hardware behind an 80% coverage gate.',
       mods: [['Lane detection', SEAME + 'Team06_ADS_Autonomous-Lane-Detection'], ['Object detection', SEAME + 'Team06_ADS_Object-Detection-and-Avoidance'], ['Instrument cluster', SEAME + 'Team06_DES_Instrument-Cluster']],
       tags: ['C++', 'ZeroMQ', 'OpenCV', 'Jetson Nano', 'GitHub Actions', 'Docker'] },
-    { t: 'Instrument Cluster', org: 'SEA:ME · Team06', cat: 'auto', url: SEAME + 'Team06_DES_Instrument-Cluster',
+    { t: 'Instrument Cluster', org: 'SEA:ME · Team06', cat: ['auto', 'embedded', 'ui'], url: SEAME + 'Team06_DES_Instrument-Cluster',
       d: 'Automotive-style digital dashboard with an animated speedometer and odometer, color-coded battery state, and lane-departure and obstacle alerts streamed from the driving stack.',
       tags: ['C++', 'Qt', 'QML', 'CMake'] },
-    { t: 'Lane Detection', org: 'SEA:ME · Team06', cat: 'auto', url: SEAME + 'Team06_ADS_Autonomous-Lane-Detection',
+    { t: 'Lane Detection', org: 'SEA:ME · Team06', cat: ['auto', 'ml', 'cv'], url: SEAME + 'Team06_ADS_Autonomous-Lane-Detection',
       d: 'Lightweight lane-line segmentation network trained in PyTorch, exported to ONNX and built with TensorRT to run in real time on the car.',
       tags: ['PyTorch', 'ONNX', 'TensorRT', 'C++'] },
-    { t: 'Object Detection', org: 'SEA:ME · Team06', cat: 'auto', url: SEAME + 'Team06_ADS_Object-Detection-and-Avoidance',
+    { t: 'Object Detection', org: 'SEA:ME · Team06', cat: ['auto', 'ml', 'cv'], url: SEAME + 'Team06_ADS_Object-Detection-and-Avoidance',
       d: 'YOLO pipeline for recognizing traffic signs, trained on synthetic images that a custom Unity tool generates and labels automatically.',
       tags: ['Python', 'YOLO', 'Unity'] },
-    { t: 'Transcendence', org: '42 School', cat: ['web', 'micro'], url: GITHUB + '/42-transcendence',
+    { t: 'Transcendence', org: '42 School', cat: ['web', 'micro', 'realtime', 'games'], url: GITHUB + '/42-transcendence',
       d: 'Multiplayer gaming platform with real-time Pong and Snake, skill-based matchmaking, live chat and JWT + 2FA auth, built as Dockerized microservices.',
       tags: ['Django', 'Channels', 'PostgreSQL', 'Redis', 'Nginx'] },
-    { t: 'WebServ', org: '42 School', cat: 'sys', url: GITHUB + '/42-webserv',
+    { t: 'WebServ', org: '42 School', cat: ['sys', 'net'], url: GITHUB + '/42-webserv',
       d: 'HTTP/1.1 server from scratch: a non-blocking epoll event loop, CGI, multiple server blocks and an nginx-style config parser.',
       tags: ['C++', 'epoll', 'HTTP/1.1', 'CGI'] },
-    { t: 'Minishell', org: '42 School', cat: 'sys', url: GITHUB + '/42-minishell',
+    { t: 'Minishell', org: '42 School', cat: ['sys', 'unix'], url: GITHUB + '/42-minishell',
       d: 'A Bash-like Unix shell with parsing, pipes, redirections, environment variables, built-ins and signal handling.',
       tags: ['C', 'POSIX', 'Processes', 'Signals'] },
-    { t: 'cub3D', org: '42 School', cat: 'gfx', url: GITHUB + '/42-cub3d',
+    { t: 'cub3D', org: '42 School', cat: ['gfx', 'games'], url: GITHUB + '/42-cub3d',
       d: 'Wolfenstein 3D-style raycasting engine written in C on top of MiniLibX.',
       tags: ['C', 'Raycasting', 'MiniLibX'] },
   ];
@@ -1007,16 +1010,16 @@
       </figure>`;
   grid.innerHTML = PROJECTS.map((p, i) => {
     const body = `
-        <div class="card-top"><span class="idx mono">${String(i + 1).padStart(2, '0')}</span><span class="cats">${[].concat(p.cat).map(c => `<span class="cat mono">${CATS[c]}</span>`).join('')}</span></div>
+        <div class="card-top"><span class="idx mono">${String(i + 1).padStart(2, '0')}</span></div>
         <h3><a href="${p.url}" target="_blank" rel="noopener">${esc(p.t)}${arrow}</a></h3>
         <p class="org mono">${esc(p.org)}</p>
+        <div class="cats" aria-label="Labels">${[].concat(p.cat).map(c => `<span class="cat mono">${CATS[c]}</span>`).join('')}</div>
         <p class="desc">${esc(p.d)}</p>
         ${p.mods ? `<div class="mods">${p.mods.map(([n, u]) => `<a href="${u}" target="_blank" rel="noopener">${esc(n)}</a>`).join('')}</div>` : ''}
         <ul class="tags" aria-label="Technologies">${p.tags.map(x => `<li>${esc(x)}</li>`).join('')}</ul>`;
-    if (p.spot) return `<article class="card spot" data-cat="${[].concat(p.cat).join(' ')}"><div class="spot-text">${body}</div>${BIKE_FIG}</article>`;
-    return `<article class="card${p.feat ? ' feat' : ''}" data-cat="${[].concat(p.cat).join(' ')}">${body}</article>`;
+    if (p.spot) return `<article class="card spot"><div class="spot-text">${body}</div>${BIKE_FIG}</article>`;
+    return `<article class="card${p.feat ? ' feat' : ''}">${body}</article>`;
   }).join('');
-  filterChips($('#projChips'), CATS, PROJECTS, p => p.cat)(k => applyFilter($$('.card', grid), k, 'cat'));
   grid.addEventListener('pointermove', e => {
     const card = e.target.closest('.card');
     if (!card) return;
