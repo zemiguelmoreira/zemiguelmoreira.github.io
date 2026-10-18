@@ -219,8 +219,6 @@
   .card::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .3s; background: radial-gradient(440px circle at var(--mx, 50%) var(--my, 0%), var(--glow), transparent 45%); }
   .card:hover { transform: translateY(-3px); border-color: var(--line-2); box-shadow: var(--shadow); }
   .card:hover::before { opacity: 1; }
-  .card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
-  .idx { font-size: 13px; color: var(--ink-3); }
   .cats { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 16px; }
   .cat { padding: 3px 8px; white-space: nowrap; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); color: var(--accent); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; }
   .card h3 { margin: 0 0 4px; font-size: 22px; letter-spacing: -.015em; line-height: 1.2; }
@@ -238,36 +236,6 @@
   .more { margin: 28px 0 0; color: var(--ink-3); font-size: 15px; }
   .more a { color: var(--accent); }
 
-  /* live */
-  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 12px; }
-  .stat, .panel { border-radius: 16px; border: 1px solid var(--line); background: var(--surface); }
-  .stat { padding: 20px 22px; }
-  .stat b { display: block; font-size: clamp(28px, 4vw, 40px); font-weight: 600; letter-spacing: -.03em; line-height: 1.15; font-variant-numeric: tabular-nums; }
-  .stat span { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
-  .act { display: grid; grid-template-columns: 1.35fr 1fr; gap: 12px; }
-  .panel { padding: 22px 24px; }
-  .panel h3 { display: flex; align-items: center; gap: 9px; margin: 0 0 12px; font: 500 12px "JetBrains Mono", monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
-  .pulse { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; animation: pulse 2s infinite; }
-  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, .55); } 70% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); } 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); } }
-  .feed { list-style: none; margin: 0; padding: 0; }
-  .feed li { display: grid; grid-template-columns: 30px 1fr auto; gap: 12px; align-items: start; padding: 12px 0; border-top: 1px solid var(--line); }
-  .feed li:first-child { border-top: 0; }
-  .feed .ic { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 8px; background: var(--bg-2); color: var(--accent); }
-  .feed .ic svg { width: 15px; height: 15px; }
-  .feed .t { min-width: 0; font-size: 15px; line-height: 1.45; }
-  .feed .t a { font-weight: 600; text-decoration: none; overflow-wrap: anywhere; }
-  .feed .t a:hover { color: var(--accent); }
-  .feed .sub { display: block; margin-top: 2px; font: 12px "JetBrains Mono", monospace; color: var(--ink-3); overflow-wrap: anywhere; }
-  .feed time { font: 12px "JetBrains Mono", monospace; color: var(--ink-3); white-space: nowrap; padding-top: 2px; }
-  .langbar { display: flex; gap: 3px; height: 12px; margin: 8px 0 20px; border-radius: 999px; overflow: hidden; background: var(--bg-2); }
-  .langbar span { height: 100%; width: 0; transition: width 1.1s cubic-bezier(.2, .8, .2, 1); }
-  .legend { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 18px; list-style: none; margin: 0; padding: 0; }
-  .legend li { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--ink-2); }
-  .legend i { width: 10px; height: 10px; border-radius: 3px; flex: none; }
-  .legend b { margin-left: auto; font: 500 12px "JetBrains Mono", monospace; color: var(--ink-3); }
-  .note { margin: 18px 0 0; font-size: 12px; color: var(--ink-3); }
-  .skel { height: 14px; margin: 14px 0; border-radius: 6px; background: linear-gradient(90deg, var(--bg-2), var(--line), var(--bg-2)); background-size: 200% 100%; animation: shimmer 1.4s infinite; }
-  @keyframes shimmer { to { background-position: -200% 0; } }
 
   /* contact */
   .contact { position: relative; padding: 140px 0 110px; text-align: center; overflow: hidden; isolation: isolate; }
@@ -292,8 +260,6 @@
     .about { grid-template-columns: 1fr; gap: 48px; }
     .term { position: relative; top: 0; }
     .grid { grid-template-columns: repeat(2, 1fr); }
-    .stats { grid-template-columns: repeat(2, 1fr); }
-    .act { grid-template-columns: 1fr; }
   }
   @media (max-width: 760px) {
     .nav ul li:not(.keep) { display: none; }
@@ -310,7 +276,6 @@
     .skill { padding: 12px; gap: 10px; }
     .term { height: 460px; }
     .term-in input { font-size: 16px; }
-    .legend { grid-template-columns: 1fr; }
     .contact { padding: 100px 0 80px; }
   }
   @media (prefers-reduced-motion: reduce) {
@@ -331,7 +296,6 @@
         <li><a href="#about">About</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#projects">Projects</a></li>
-        <li><a href="#live">Live</a></li>
         <li class="keep"><a href="#contact">Contact</a></li>
       </ul>
     </nav>
@@ -420,37 +384,9 @@
     </div>
   </section>
 
-  <section class="sec" id="live" aria-labelledby="live-h" style="padding-top:40px">
-    <div class="wrap">
-      <div class="sec-head rv">
-        <span class="kicker mono">04 / Live</span>
-        <h2 id="live-h">Live from GitHub.</h2>
-        <p>Pulled straight from the GitHub API each time you visit.</p>
-      </div>
-      <div class="stats rv">
-        <div class="stat"><b id="stRepos">--</b><span class="mono">Public repos</span></div>
-        <div class="stat"><b id="stYears">--</b><span class="mono">Years on GitHub</span></div>
-        <div class="stat"><b id="stFollowers">--</b><span class="mono">Followers</span></div>
-        <div class="stat"><b id="stPush">--</b><span class="mono">Last push</span></div>
-      </div>
-      <div class="act rv">
-        <div class="panel">
-          <h3><span class="pulse" aria-hidden="true"></span>Recent activity</h3>
-          <ul class="feed" id="feed"><li class="skel" aria-hidden="true"></li><li class="skel" aria-hidden="true"></li><li class="skel" aria-hidden="true"></li></ul>
-        </div>
-        <div class="panel">
-          <h3>Language mix</h3>
-          <div class="langbar" id="langBar" role="img" aria-label="Language mix"></div>
-          <ul class="legend" id="legend"></ul>
-          <p class="note mono" id="langNote"></p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section class="contact" id="contact" aria-labelledby="contact-h">
     <div class="wrap rv">
-      <span class="kicker mono">05 / Contact</span>
+      <span class="kicker mono">04 / Contact</span>
       <h2 id="contact-h">Let's <span class="accent">talk</span>.</h2>
       <p>Mobility, automotive software, systems engineering, or a good conversation about bikes and code. My inbox is open.</p>
       <div class="mail-row">
@@ -564,7 +500,6 @@
       tags: ['C', 'Raycasting', 'MiniLibX'] },
   ];
 
-  const LANG_COLORS = { C: '#7a8494', 'C++': '#f34b7d', Java: '#b07219', JavaScript: '#f1e05a', Python: '#3572A5', Shell: '#89e051', HTML: '#e34c26', CSS: '#663399', TypeScript: '#3178c6', QML: '#44a51c', Other: '#94a3b8' };
 
   /* ---------- helpers ---------- */
   const $ = (s, r = document) => r.querySelector(s);
@@ -576,15 +511,6 @@
     if (h.length === 3) h = h.replace(/./g, '$&$&');
     const n = parseInt(h, 16);
     return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`;
-  };
-  const ago = iso => {
-    const s = (Date.now() - new Date(iso).getTime()) / 1000;
-    for (const [n, u] of [[31536000, 'y'], [2592000, 'mo'], [604800, 'w'], [86400, 'd'], [3600, 'h'], [60, 'm']]) if (s >= n) return Math.floor(s / n) + u + ' ago';
-    return 'just now';
-  };
-  const store = {
-    get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } },
-    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* storage unavailable */ } },
   };
   const iconSvg = (slug, cls = '') => {
     const d = (window.ICONS || {})[slug];
@@ -999,9 +925,8 @@
   /* ---------- projects ---------- */
   const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>';
   const grid = $('#projGrid');
-  grid.innerHTML = PROJECTS.map((p, i) => {
+  grid.innerHTML = PROJECTS.map(p => {
     const body = `
-        <div class="card-top"><span class="idx mono">${String(i + 1).padStart(2, '0')}</span></div>
         <h3><a href="${p.url}" target="_blank" rel="noopener">${esc(p.t)}${arrow}</a></h3>
         <p class="org mono">${esc(p.org)}</p>
         <div class="cats" aria-label="Labels">${[].concat(p.cat).map(c => `<span class="cat mono">${CATS[c]}</span>`).join('')}</div>
@@ -1075,7 +1000,7 @@
         print(`cat: ${esc(arg || '')}: No such file or directory`, 't-err');
       }],
       cd: ['', arg => {
-        const m = { projects: '#projects', skills: '#skills', about: '#about', contact: '#contact', live: '#live' }[(arg || '').replace(/\W/g, '')];
+        const m = { projects: '#projects', skills: '#skills', about: '#about', contact: '#contact' }[(arg || '').replace(/\W/g, '')];
         if (m) { $(m).scrollIntoView({ behavior: RM.matches ? 'auto' : 'smooth' }); print(`<span class="t-dim">→ ${m.slice(1)}</span>`); }
         else print('<span class="t-dim">~</span>');
       }],
@@ -1131,133 +1056,6 @@
     print(`<span class="t-acc">jmm-shell</span> <span class="t-dim">v4.2 · last login ${new Date().toDateString()} on ttys042</span>\nType <span class="t-acc">help</span> to look around, or tap a command below.`);
   })();
 
-  /* ---------- live GitHub ---------- */
-  const EV_ICONS = {
-    push: '<path d="M12 3v12M7 8l5-5 5 5M5 21h14"/>',
-    create: '<path d="M12 5v14M5 12h14"/>',
-    pr: '<circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M6 8.5v7M18 15.5V9a3 3 0 0 0-3-3h-4"/>',
-    star: '<path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/>',
-    repo: '<path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/>',
-    dot: '<circle cx="12" cy="12" r="4"/>',
-  };
-  const evIcon = k => `<span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${EV_ICONS[k] || EV_ICONS.dot}</svg></span>`;
-  const cap = s => (s ? s[0].toUpperCase() + s.slice(1) : '');
-  const repoLink = name => `<a href="https://github.com/${esc(name)}" target="_blank" rel="noopener">${esc(name.split('/')[1] || name)}</a>`;
-
-  function describe(e) {
-    const r = repoLink(e.repo), n = e.n ? ` #${e.n}` : '';
-    switch (e.type) {
-      case 'PushEvent': {
-        const c = e.size ? `${e.size} commit${e.size > 1 ? 's' : ''} ` : '';
-        return ['push', `Pushed ${c}to ${r}`, (e.ref || '').replace('refs/heads/', '') + (e.times > 1 ? ` · ${e.times} pushes` : '')];
-      }
-      case 'CreateEvent': return ['create', e.refType === 'repository' ? `Created ${r}` : `Created ${esc(e.refType)} in ${r}`, e.refType === 'repository' ? '' : (e.ref || '')];
-      case 'DeleteEvent': return ['dot', `Deleted ${esc(e.refType)} in ${r}`, e.ref || ''];
-      case 'PullRequestEvent': return ['pr', `${esc(cap(e.action) || 'Updated')} pull request${n} in ${r}`, e.title || ''];
-      case 'PullRequestReviewEvent': return ['pr', `Reviewed pull request${n} in ${r}`, e.title || ''];
-      case 'IssuesEvent': return ['dot', `${esc(cap(e.action) || 'Updated')} issue${n} in ${r}`, e.title || ''];
-      case 'IssueCommentEvent': case 'PullRequestReviewCommentEvent': return ['dot', `Commented on${n} in ${r}`, e.title || ''];
-      case 'WatchEvent': return ['star', `Starred ${r}`, ''];
-      case 'ForkEvent': return ['repo', `Forked ${r}`, ''];
-      case 'PublicEvent': return ['repo', `Open-sourced ${r}`, ''];
-      case 'ReleaseEvent': return ['create', `Published a release in ${r}`, ''];
-      default: return ['dot', `${esc(e.type.replace(/Event$/, ''))} in ${r}`, ''];
-    }
-  }
-
-  function countUp(el, to) {
-    if (RM.matches || !isFinite(to)) { el.textContent = to; return; }
-    const t0 = performance.now(), dur = 1000;
-    (function step(now) {
-      const p = Math.min(1, (now - t0) / dur);
-      el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3)));
-      if (p < 1) requestAnimationFrame(step);
-    })(t0);
-  }
-
-  function renderGitHub(d) {
-    const own = d.repos.filter(r => !r.fork);
-    const lastPush = [d.events[0] && d.events[0].at, d.repos[0] && d.repos[0].pushed].filter(Boolean).sort().pop();
-    const years = Math.floor((Date.now() - new Date(d.user.created).getTime()) / 31557600000);
-    const statsObs = new IntersectionObserver(([e]) => {
-      if (!e.isIntersecting) return;
-      statsObs.disconnect();
-      countUp($('#stRepos'), d.user.repos);
-      countUp($('#stYears'), years);
-      countUp($('#stFollowers'), d.user.followers);
-    });
-    statsObs.observe($('.stats'));
-    const pushText = lastPush ? ago(lastPush) : '--';
-    $('#stPush').textContent = pushText.replace(' ago', '');
-    $('#stPush').title = lastPush ? new Date(lastPush).toLocaleString() : '';
-
-    // activity: merge consecutive pushes to the same repo
-    const items = [];
-    for (const e of d.events) {
-      const prev = items[items.length - 1];
-      if (prev && e.type === 'PushEvent' && prev.type === 'PushEvent' && prev.repo === e.repo) { prev.times = (prev.times || 1) + 1; prev.size = (prev.size || 0) + (e.size || 0); continue; }
-      items.push(Object.assign({}, e));
-    }
-    const feed = $('#feed');
-    if (items.length) {
-      feed.innerHTML = items.slice(0, 6).map(e => {
-        const [k, text, sub] = describe(e);
-        return `<li>${evIcon(k)}<span class="t">${text}${sub ? `<span class="sub">${esc(sub)}</span>` : ''}</span><time datetime="${esc(e.at)}" title="${esc(new Date(e.at).toLocaleString())}">${ago(e.at)}</time></li>`;
-      }).join('');
-    } else {
-      feed.innerHTML = own.slice(0, 6).map(r => `<li>${evIcon('repo')}<span class="t">Updated ${repoLink(GH_USER + '/' + r.name)}<span class="sub">${esc(r.desc || r.lang || '')}</span></span><time datetime="${esc(r.pushed)}">${ago(r.pushed)}</time></li>`).join('') || '<li>No public activity yet.</li>';
-    }
-
-    // language mix by primary language of public, non-fork repos
-    const counts = {};
-    own.forEach(r => { if (r.lang) counts[r.lang] = (counts[r.lang] || 0) + 1; });
-    let langs = Object.entries(counts).sort((x, y) => y[1] - x[1]);
-    if (langs.length > 6) langs = langs.slice(0, 5).concat([['Other', langs.slice(5).reduce((s, x) => s + x[1], 0)]]);
-    const total = langs.reduce((s, x) => s + x[1], 0) || 1;
-    const bar = $('#langBar');
-    bar.innerHTML = langs.map(([l]) => `<span style="background:${LANG_COLORS[l] || LANG_COLORS.Other}" title="${esc(l)}"></span>`).join('');
-    bar.setAttribute('aria-label', 'Language mix: ' + langs.map(([l, c]) => `${l} ${Math.round(c / total * 100)}%`).join(', '));
-    $('#legend').innerHTML = langs.map(([l, c]) => `<li><i style="background:${LANG_COLORS[l] || LANG_COLORS.Other}"></i>${esc(l)}<b>${Math.round(c / total * 100)}%</b></li>`).join('');
-    $('#langNote').textContent = `Primary language of ${own.filter(r => r.lang).length} public repos · updated ${ago(d.ts)}`;
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      $$('span', bar).forEach((s, i) => { s.style.width = (langs[i][1] / total * 100) + '%'; });
-    }));
-  }
-
-  function renderGitHubError() {
-    $('#feed').innerHTML = `<li>${evIcon('dot')}<span class="t">GitHub's API isn't answering right now (it rate-limits anonymous visitors).<span class="sub">See everything on <a href="${GITHUB}" target="_blank" rel="noopener">github.com/${GH_USER}</a></span></span><span></span></li>`;
-    $('#langNote').textContent = 'Language data unavailable right now.';
-  }
-
-  async function loadGitHub() {
-    const KEY = 'gh-cache-v1', TTL = 20 * 60 * 1000;
-    let data = store.get(KEY);
-    if (!data || !data.user || Date.now() - data.ts > TTL) {
-      const api = p => fetch('https://api.github.com' + p, { headers: { Accept: 'application/vnd.github+json' } })
-        .then(r => { if (!r.ok) throw new Error('GitHub API ' + r.status); return r.json(); });
-      try {
-        const [u, repos, events] = await Promise.all([
-          api(`/users/${GH_USER}`),
-          api(`/users/${GH_USER}/repos?per_page=100&sort=pushed`),
-          api(`/users/${GH_USER}/events/public?per_page=50`).catch(() => []),
-        ]);
-        data = {
-          ts: Date.now(),
-          user: { repos: u.public_repos, followers: u.followers, created: u.created_at },
-          repos: repos.map(r => ({ name: r.name, fork: r.fork, lang: r.language, pushed: r.pushed_at, desc: r.description })),
-          events: events.map(e => {
-            const p = e.payload || {}, item = p.pull_request || p.issue || {};
-            return { type: e.type, repo: e.repo.name, at: e.created_at, ref: p.ref, refType: p.ref_type, action: p.action, size: p.size || p.distinct_size || 0, n: item.number, title: item.title };
-          }),
-        };
-        store.set(KEY, data);
-      } catch (err) {
-        if (!data || !data.user) return renderGitHubError();
-      }
-    }
-    renderGitHub(data);
-  }
-  loadGitHub();
 })();
 </script>
 </body>
